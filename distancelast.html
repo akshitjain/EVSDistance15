@@ -25,27 +25,7 @@
         directionsDisplay.setMap(map);
       }
       var directionsService = new google.maps.DirectionsService();
-    /*  function calcRoute() {
-        var selectedMode = document.getElementById('mode').value;
-        var start = document.getElementById("start").value;
-        var end = document.getElementById("end").value;
-        var request = {
-          origin:start,
-          destination:end,
-          travelMode: google.maps.TravelMode[selectedMode]
-          };
-        
-          
-        var distanceInput = document.getElementById("distance");
-        var distancetime = document.getElementById("duration");
-        directionsService.route(request, function(response, status) {
-        if (status == google.maps.DirectionsStatus.OK) {
-              directionsDisplay.setDirections(response);
-              distanceInput.value = response.routes[0].legs[0].distance.value / 1000;
-              distancetime.value = response.routes[0].legs[0].duration.value / 3600;
-            }
-      });
-      }*/
+      
       var distanceInputDriving,distancetimeDriving,drivingd;
       function calcRoute() {
         var selectedMode = document.getElementById('mode').value;
