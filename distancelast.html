@@ -46,7 +46,7 @@
             }
       });
       }*/
-      var distanceInputDriving,distancetimeDriving;
+      var distanceInputDriving,distancetimeDriving,drivingd;
       function calcRoute() {
         var selectedMode = document.getElementById('mode').value;
         var start = document.getElementById("start").value;
@@ -64,12 +64,14 @@
         if (status == google.maps.DirectionsStatus.OK) {
               directionsDisplay.setDirections(response);
                distanceInputDriving.value = response.routes[0].legs[0].distance.value / 1000;
+              // drivingd = parseInt(distanceInputDriving.value);
+               drivingd = distanceInputDriving.value;
                distancetimeDriving.value = response.routes[0].legs[0].duration.value / 3600;
             }
       });
         
       }
-      var distanceInputDrivingT,distancetimeDrivingT;
+      var distanceInputDrivingT,distancetimeDrivingT,transitd;
       function calcRouteT() {
         var selectedMode = document.getElementById('mode').value;
         var start = document.getElementById("start").value;
@@ -87,12 +89,22 @@
         if (status == google.maps.DirectionsStatus.OK) {
               directionsDisplay.setDirections(response);
                distanceInputDrivingT.value = response.routes[0].legs[0].distance.value / 1000;
+              // transitd = parseInt(distanceInputDrivingT.value);
+               transitd = distanceInputDrivingT.value;
                distancetimeDrivingT.value = response.routes[0].legs[0].duration.value / 3600;
             }
       });
         
       }
-
+      function myFunction(){
+      var answer;
+      if(transitd < drivingd){
+        answer = "transit";
+      }else{
+        answer="car";
+      }
+      document.getElementById("demo").innerHTML = answer;
+    }
     </script>
   </head>
   <body onload="initialize()">
@@ -122,6 +134,8 @@
             <option value="Rail">Rail</option>
         </select>
       </p>
+      <button onclick="myFunction()">Optimal</button>
+      <p id="demo"></p>
     </div>
     <div id="map_canvas"></div>
   </body>
